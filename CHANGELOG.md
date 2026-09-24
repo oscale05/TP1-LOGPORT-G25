@@ -5,6 +5,13 @@
 - Reflexión sobre el impacto de incorporar datos sin limpieza.
 - Propuesta de mejora para el proceso de captura de datos.
 
+[Ejercicio 07]
+- Redacción y guardado de la conclusión del Sprint 1 en `port_log/reports/conclusion.md`.
+- Evaluación de la calidad del dataset heredado.
+- Identificación de patrones de infracción detectados.
+- Reflexión sobre el impacto de incorporar datos sin limpieza.
+- Propuesta de mejora para el proceso de captura de datos.
+
 [Ejercicio 06]
 - Respuesta: ¿Qué porcentaje de infracciones provienen de registros con fecha inválida?
 - Respuesta: ¿Qué porcentaje de infracciones provienen de registros con hora inválida?
