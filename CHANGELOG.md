@@ -1,3 +1,11 @@
+[Ejercicio 05]
+- Generación del gráfico 'Top 10 matrículas más reincidentes' y exportación a `port_log/data/interim/plots/top_infractores.jpg`.
+- Generación del gráfico 'Total de infracciones por turno del día' y exportación a `port_log/data/interim/plots/turnos.jpg`.
+- Generación del gráfico 'Total de infracciones por mes' y exportación a `port_log/data/interim/plots/meses.jpg`.
+- Generación del 'Histograma del exceso de velocidad real' y exportación a `port_log/data/interim/plots/distribucion_exceso.jpg`.
+- Generación del gráfico 'Exceso de velocidad promedio por muelle' y exportación a `port_log/data/interim/plots/exceso_por_muelle.jpg`.
+- Generación del gráfico 'Comparación de infracciones con fecha válida vs fecha inválida' y exportación a `port_log/data/interim/plots/fechas_invalidas.jpg`.
+
 [Ejercicio 04]
 - Definición de la clase `PortAnalyzer`.
 - Implementación de `top_infractores`.
