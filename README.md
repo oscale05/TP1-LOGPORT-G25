@@ -14,3 +14,8 @@ El Puerto Fluvial de Rosario migró su sistema de registro de movimientos portua
 - Tipo de carga más frecuente en infracciones: CONTENEDORES (15.78%)
 - Origen más frecuente entre infractores: VALPARAISO (62 registros)
 - Duración promedio de estadía en muelle de buques infractores (excluyendo fechas inválidas): 37.17 horas.
+
+
+## Sprint 1 Completado
+
+El Sprint 1 ha sido completado con éxito, incluyendo la adquisición de datos, limpieza, normalización, análisis de infracciones, visualizaciones y la generación de una conclusión completa.
