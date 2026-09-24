@@ -1,3 +1,13 @@
+[Ejercicio 04]
+- Definición de la clase `PortAnalyzer`.
+- Implementación de `top_infractores`.
+- Implementación de `infracciones_por_turno`.
+- Implementación de `exceso_promedio`.
+- Implementación de `exceso_promedio_tolerancia`.
+- Implementación de `infracciones_por_muelle`.
+- Implementación de `infractores_por_tipo_carga`.
+- Instanciación de `PortAnalyzer` y uso de sus métodos.
+
 [Ejercicio 03]
 - Normalización de fechas de ingreso y egreso.
 - Normalización de horas de ingreso y egreso.
