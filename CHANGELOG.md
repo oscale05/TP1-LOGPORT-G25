@@ -1,3 +1,10 @@
+[Ejercicio 06]
+- Respuesta: ¿Qué porcentaje de infracciones provienen de registros con fecha inválida?
+- Respuesta: ¿Qué porcentaje de infracciones provienen de registros con hora inválida?
+- Respuesta: ¿Cuál es el tipo de carga más frecuente en infracciones y qué porcentaje representa?
+- Respuesta: ¿Cuál es el origen más frecuente entre los buques infractores?
+- Respuesta: ¿Cuál es la duración promedio de estadía en muelle de los buques infractores?
+
 [Ejercicio 05]
 - Generación del gráfico 'Top 10 matrículas más reincidentes' y exportación a `port_log/data/interim/plots/top_infractores.jpg`.
 - Generación del gráfico 'Total de infracciones por turno del día' y exportación a `port_log/data/interim/plots/turnos.jpg`.
