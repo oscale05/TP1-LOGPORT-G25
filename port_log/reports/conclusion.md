@@ -1,48 +1,42 @@
+
 # Conclusión del Sprint 1
 
 ## Evaluación de la calidad del dataset heredado
 
 El dataset `port_movements.csv` heredado presentaba una baja calidad inicial, lo que requirió un proceso exhaustivo de limpieza y normalización. Se descartaron un total de 1088 filas (aproximadamente un 72.53% del dataset original de 1500 filas) debido a:
--   Valores nulos en columnas críticas (`matricula`, `tonelaje_declarado`, `velocidad_ingreso`, `radar_id`, `estado_despacho`, `duracion_horas`).
--   Outliers significativos en `tonelaje_declarado` y `velocidad_ingreso`.
--   Registros que, tras la limpieza, no presentaban ninguna infracción.
+-   **Valores nulos en columnas críticas:** Columnas como `matricula`, `tonelaje_declarado`, `velocidad_ingreso`, `radar_id`, `estado_despacho` y `duracion_horas` contenían un número significativo de nulos, haciendo inviable su análisis sin una imputación o eliminación adecuada. Para asegurar la fiabilidad de los análisis subsiguientes, se optó por la eliminación de las filas con nulos en estas columnas, resultando en la pérdida de 331 filas.
+-   **Outliers extremos:** Se identificaron y eliminaron 80 filas adicionales con valores atípicos en `tonelaje_declarado` y `velocidad_ingreso` utilizando el método IQR, el cual fue preferido sobre Z-score por su robustez ante distribuciones no normales. Estos outliers habrían distorsionado gravemente los cálculos de promedios y la detección de infracciones.
+-   **Registros sin infracción:** Un total de 677 filas fueron eliminadas al no presentar ningún exceso de velocidad, lo cual es coherente con el objetivo de analizar específicamente los buques infractores.
 
-Los tipos de error más frecuentes incluyeron:
--   **Inconsistencias de formato:** Fechas y horas con formatos variados e inválidos, requiriendo normalización a `YYYY-MM-DD` y `HH:MM` respectivamente.
--   **Caracteres especiales:** En campos como `matricula` y `muelle`, que fueron eliminados para estandarización.
--   **Valores atípicos:** En variables numéricas como `tonelaje_declarado` y `velocidad_ingreso`, que distorsionaban los promedios y análisis.
--   **Valores nulos:** Que afectaban la integridad de registros clave para la identificación de infracciones y el cálculo de duraciones.
-
-Afortunadamente, después de la limpieza y filtrado de las filas sin infracción, no se encontraron infracciones provenientes de registros con fecha o hora inválida (0.00% en ambos casos), lo que indica que el proceso de limpieza fue efectivo para los datos relevantes.
+Los tipos de error más frecuentes fueron la presencia de valores nulos, fechas/horas en formatos inconsistentes (normalizados a '1900-01-01' o '00:00' cuando eran inválidos), y valores numéricos fuera de rangos esperados (outliers).
 
 ## Patrones de infracción detectados
 
-El análisis de los 412 registros de infracciones restantes reveló los siguientes patrones:
+El análisis de los buques infractores reveló varios patrones clave:
+-   **Turnos:** Las infracciones se concentran principalmente en la **Madrugada** (27.9%) y la **Tarde** (27.7%), seguido de la Noche (23.5%) y la Mañana (20.9%). Esto sugiere que los turnos con menor supervisión o mayor congestión podrían ser puntos críticos.
+-   **Muelles:** Algunos muelles muestran un exceso de velocidad promedio considerablemente más alto, como **MUELLEA** (5.50 km/h) y **MUELLED** (5.13 km/h). Esto podría indicar problemas específicos de infraestructura, señalización o supervisión en esos muelles.
+-   **Tipos de carga:** **CONTENEDORES** es el tipo de carga más frecuente entre los infractores (15.78%), seguido de TRIGO (14.56%) y HARINA (13.11%). Aunque esto podría deberse a que son los tipos de carga más comunes, podría también señalar la necesidad de un monitoreo más estricto para estos buques.
+-   **Orígenes:** **VALPARAISO** es el origen más frecuente de buques infractores (62 registros), lo que podría indicar la necesidad de comunicar las regulaciones de velocidad a los operadores de buques que provienen de ese puerto.
+-   **Duración de estadía:** La duración promedio de estadía en muelle para buques infractores (excluyendo fechas inválidas) es de 37.17 horas, un dato importante para evaluar la eficiencia portuaria en relación con los infractores.
 
--   **Por Turno:** La mayoría de las infracciones se concentran en los turnos de **Madrugada (115)** y **Tarde (114)**, seguidos de Noche (97) y Mañana (86). Esto podría indicar momentos de menor supervisión o mayor congestión en ciertos horarios.
--   **Por Muelle:** Las infracciones están distribuidas de manera relativamente uniforme entre los muelles principales (MUELLE-A a MUELLE-F), con MUELLE-B (70) y MUELLE-C (70) ligeramente por encima de los demás. Sin embargo, se detectaron algunas variaciones debido a errores de tipeo en los nombres de los muelles (e.g., "MUELLEA" vs "MUELLE-A").
--   **Por Tipo de Carga:** Los **Contenedores (65)** y el **Trigo (60)** son los tipos de carga con mayor número de infracciones, seguidos de Harina (54) y Granos (53). Esto podría sugerir que buques que transportan estos tipos de carga son más propensos a cometer infracciones de velocidad.
--   **Exceso de Velocidad Promedio:** El exceso de velocidad promedio real fue de 3.02 km/h, y con una tolerancia del 5%, fue de 2.46 km/h, indicando que las infracciones no son marginales.
--   **Origen Más Frecuente:** El origen más frecuente entre los buques infractores es "ASIA" con un número significativo de registros.
--   **Duración Promedio de Estadía:** La duración promedio de estadía en muelle para los buques infractores es de aproximadamente 28.52 horas.
+## Reflexión sobre el impacto de incorporar estos datos sin limpieza previa
 
-## Reflexión sobre el impacto de incorporar datos sin limpieza previa
+Incorporar el dataset heredado sin una limpieza previa al nuevo sistema habría tenido consecuencias severas y negativas:
+-   **Análisis erróneos:** Los valores nulos y outliers habrían distorsionado cualquier análisis estadístico, llevando a conclusiones incorrectas sobre patrones de tráfico, eficiencias operativas y cumplimiento de normativas. Por ejemplo, el cálculo inicial de la duración promedio de estadía era de 2587 horas (más de 100 días), un valor completamente irreal debido a fechas inválidas. Sin la limpieza, no se habrían podido identificar los valores reales de 37.17 horas.
+-   **Decisiones operativas y estratégicas deficientes:** Basarse en datos erróneos podría haber llevado a la toma de decisiones ineficaces o contraproducentes, como la asignación inadecuada de recursos, la implementación de políticas de seguridad incorrectas o la penalización injusta de operadores.
+-   **Problemas de integridad del nuevo sistema:** La migración de datos inconsistentes podría haber corrompido la base de datos del nuevo sistema, dificultando su operatividad y la confianza en la información almacenada.
+-   **Pérdida de credibilidad:** La baja calidad de los datos y los análisis resultantes erosionarían la credibilidad del sistema de gestión portuaria y de los analistas responsables.
 
-Incorporar los datos del sistema heredado sin una limpieza y normalización previas al nuevo sistema tendría graves consecuencias:
+## Propuesta concreta de mejora para el proceso de captura de datos en el puerto
 
--   **Análisis distorsionados:** Los informes y análisis generados a partir de datos inconsistentes serían inexactos, llevando a conclusiones erróneas sobre el rendimiento portuario, la seguridad y la eficiencia.
--   **Ineficiencia operativa:** Los operadores del nuevo sistema tendrían que lidiar con entradas de datos incorrectas, lo que podría causar retrasos, errores en la planificación y una gestión deficiente de los recursos.
--   **Pérdida de confianza:** La fiabilidad del nuevo sistema se vería comprometida, erosionando la confianza en la información y en las decisiones basadas en ella.
--   **Costos ocultos:** La corrección manual de datos, la investigación de discrepancias y la repetición de tareas generarían costos operativos adicionales significativos.
--   **Dificultad en la identificación de patrones:** Los errores y la falta de estandarización en campos clave impedirían la detección de patrones relevantes, como los top infractores o los horarios/lugares con más problemas, dificultando la toma de medidas correctivas.
+**Propuesta: Implementación de un Sistema de Validación de Entrada de Datos en Tiempo Real (SVDT).**
 
-## Propuesta de mejora para el proceso de captura de datos
+Este sistema se integraría directamente en la interfaz de entrada de datos del nuevo sistema portuario. Sus características clave serían:
 
-Una propuesta concreta de mejora para el proceso de captura de datos en el puerto sería la implementación de un sistema de **validación y estandarización en el punto de entrada de datos**. Esto incluiría:
+1.  **Validación de Formato y Tipo de Datos:** Al ingresar una fecha, hora, matrícula o valor numérico, el sistema validaría automáticamente que el formato y el tipo de dato sean correctos. Por ejemplo, las fechas deben estar en `YYYY-MM-DD` y las horas en `HH:MM` (24h). Los valores numéricos (`tonelaje_declarado`, `velocidad_ingreso`) serían validados para asegurar que son numéricos y están dentro de rangos esperados (e.g., velocidad no negativa, tonelaje dentro de un rango físico razonable).
+2.  **Validación de Completitud:** El sistema no permitiría guardar un registro si campos críticos (`matricula`, `fecha_ingreso`, `hora_ingreso`, `muelle`, `tipo_carga`, `estado_despacho`) están vacíos. Esto obligaría a los operadores a registrar la información completa en el momento.
+3.  **Alertas y Retroalimentación Inmediata:** En caso de un dato inválido o incompleto, el sistema mostraría una alerta clara y específica al operador, indicando el error y la corrección necesaria. Esto permitiría rectificar los datos en la fuente, en el momento de la captura.
+4.  **Listas Desplegables y Autocompletado:** Para campos como `muelle`, `tipo_carga` y `origen`, se utilizarían listas desplegables (dropdowns) con valores predefinidos y autocompletado para `matricula` (si ya existe en el sistema), reduciendo errores tipográficos y asegurando la consistencia de los datos.
+5.  **Registro de Cambios (Audit Trail):** Cualquier modificación posterior a un registro validado inicial sería auditada, registrando quién, cuándo y qué se modificó. Esto ayudaría a mantener la trazabilidad y la responsabilidad.
 
-1.  **Validación de formatos en tiempo real:** Para fechas (AAAA-MM-DD), horas (HH:MM), y campos numéricos (rangos de tonelaje y velocidad).
-2.  **Campos con selección predefinida:** Utilizar listas desplegables o catálogos para `muelle`, `tipo_carga` y `estado_despacho` para evitar errores de tipeo y garantizar la consistencia.
-3.  **Normalización automática:** Implementar rutinas que, al ingresar una `matricula`, eliminen automáticamente caracteres especiales y la conviertan a mayúsculas, o incluso validen su formato contra un registro de matrículas conocidas.
-4.  **Retroalimentación instantánea:** Proporcionar mensajes claros al usuario si los datos ingresados no cumplen con los estándares, permitiendo la corrección inmediata.
-
-Esta estrategia proactiva reduciría drásticamente la cantidad de datos inconsistentes, mejorando la calidad de la información en el nuevo sistema desde su origen.
+**Impacto esperado:** El SVDT reduciría drásticamente la cantidad de datos inconsistentes y nulos desde el origen, minimizando la necesidad de procesos de limpieza manual costosos y propensos a errores. Esto garantizaría que el nuevo sistema opere con datos de alta calidad desde el primer día, facilitando análisis precisos y la toma de decisiones informadas para la gestión portuaria.
