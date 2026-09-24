@@ -1,3 +1,17 @@
+[Ejercicio 07]
+- Redacción y guardado de la conclusión del Sprint 1 en `port_log/reports/conclusion.md`.
+- Evaluación de la calidad del dataset heredado.
+- Identificación de patrones de infracción detectados.
+- Reflexión sobre el impacto de incorporar datos sin limpieza.
+- Propuesta de mejora para el proceso de captura de datos.
+
+[Ejercicio 06]
+- Respuesta: ¿Qué porcentaje de infracciones provienen de registros con fecha inválida?
+- Respuesta: ¿Qué porcentaje de infracciones provienen de registros con hora inválida?
+- Respuesta: ¿Cuál es el tipo de carga más frecuente en infracciones y qué porcentaje representa?
+- Respuesta: ¿Cuál es el origen más frecuente entre los buques infractores?
+- Respuesta: ¿Cuál es la duración promedio de estadía en muelle de los buques infractores? (Valor corregido)
+
 [Ejercicio 05]
 - Generación del gráfico 'Top 10 matrículas más reincidentes' y exportación a `port_log/data/interim/plots/top_infractores.jpg`.
 - Generación del gráfico 'Total de infracciones por turno del día' y exportación a `port_log/data/interim/plots/turnos.jpg`.
