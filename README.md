@@ -1,21 +1,24 @@
-# Sprint 1 - Análisis de Movimientos Portuarios
+# Port Log — Trabajo Práctico Integrador
+
+**Sprint actual: Sprint 1**
 
 ## Objetivo
-Aplicar conocimientos de versionado, organización y análisis exploratorio de datos con pandas sobre un dataset real de operaciones portuarias.
+Aplicar conocimientos de versionado, organización y análisis exploratorio de datos
+con pandas sobre un dataset real de operaciones portuarias.
 
-## Introducción y Contexto del problema
-El Puerto Fluvial de Rosario migró su sistema de registro de movimientos portuarios. El sistema heredado tiene inconsistencias de formato en fechas, matrículas y valores numéricos. Nuestro equipo analizará y depurará estos datos para su incorporación al nuevo sistema.
+## Introducción y contexto
+El Puerto Fluvial de Rosario es uno de los complejos portuarios más importantes de
+América del Sur y el principal punto de exportación de granos y derivados de la
+Argentina. Diariamente ingresan y egresan decenas de buques de distintas banderas
+con cargas de diverso tipo.
 
+El sistema de registro de movimientos portuarios fue migrado recientemente desde un
+sistema heredado de los años '90 que acumuló inconsistencias de formato en fechas,
+matrículas de buques y valores numéricos fuera de rango. Nuestro equipo fue
+contratado para analizar y depurar los datos del sistema antiguo.
 
-## Ejercicio 06 - Análisis de Infracciones
+## Repositorio
+https://github.com/oscale05/TP1-LOGPORT-G25 (rama `Sprint_1`)
 
-- Porcentaje de infracciones con fecha inválida: 6.31%
-- Porcentaje de infracciones con hora inválida: 0.00%
-- Tipo de carga más frecuente en infracciones: CONTENEDORES (15.78%)
-- Origen más frecuente entre infractores: VALPARAISO (62 registros)
-- Duración promedio de estadía en muelle de buques infractores (excluyendo fechas inválidas): 37.17 horas.
-
-
-## Sprint 1 Completado
-
-El Sprint 1 ha sido completado con éxito, incluyendo la adquisición de datos, limpieza, normalización, análisis de infracciones, visualizaciones y la generación de una conclusión completa.
+## Grupo 25
+- Oscar Alejandro Franco

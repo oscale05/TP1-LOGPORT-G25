@@ -1,3 +1,5 @@
+# CHANGELOG
+
 [Ejercicio 07]
 - Redacción y guardado de la conclusión del Sprint 1 en `port_log/reports/conclusion.md`.
 - Evaluación de la calidad del dataset heredado.
@@ -43,6 +45,7 @@
 - Exportación del resumen estadístico en `port_log/reports/summary_sprint1.csv`.
 
 [Ejercicio 01]
-- Inicialización del repositorio.
-- Creación de la estructura de directorios.
-- Creación inicial de README.md y CHANGELOG.md.
+- Clonado idempotente del repositorio y creación/verificación de la rama `Sprint_1`.
+- Estructura de carpetas `port_log/` (data/raw, data/interim/plots, data/processed, reports).
+- Limpieza del repositorio: eliminación de `.config/` y archivos ajenos; `.gitignore`.
+- Creación/actualización de `README.md` y `CHANGELOG.md`.
