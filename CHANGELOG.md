@@ -23,14 +23,9 @@
 - Generación del gráfico 'Comparación de infracciones con fecha válida vs fecha inválida' y exportación a `port_log/data/interim/plots/fechas_invalidas.jpg`.
 
 [Ejercicio 04]
-- Definición de la clase `PortAnalyzer`.
-- Implementación de `top_infractores`.
-- Implementación de `infracciones_por_turno`.
-- Implementación de `exceso_promedio`.
-- Implementación de `exceso_promedio_tolerancia`.
-- Implementación de `infracciones_por_muelle`.
-- Implementación de `infractores_por_tipo_carga`.
-- Instanciación de `PortAnalyzer` y uso de sus métodos.
+- Clase `PortAnalyzer` con datos encapsulados y type hints completos.
+- Métodos: `top_infractores`, `infracciones_por_turno`, `exceso_promedio`, `exceso_promedio_tolerancia`, `infracciones_por_muelle`, `infractores_por_tipo_carga`.
+- Instanciación e invocación de cada método en celdas separadas.
 
 [Ejercicio 03]
 - Normalización de fechas (`YYYY-MM-DD`, `dd/mm/YYYY`, `dd-mm-YYYY`); inválidas → `1900-01-01` con flag de validez.
