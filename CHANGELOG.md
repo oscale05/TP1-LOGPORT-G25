@@ -44,6 +44,11 @@
 - Guardado del dataset limpio en `port_log/data/interim/port_movements.csv`.
 - Exportación del resumen estadístico en `port_log/reports/summary_sprint1.csv`.
 
+[Ejercicio 02]
+- Descarga del dataset con `curl` a `port_log/data/raw/port_movements.csv` (sin pandas).
+- Exploración: primeras/últimas filas, tipos de datos y nulos por columna.
+- Completitud por columna con validación de campos (no solo valores presentes).
+
 [Ejercicio 01]
 - Clonado idempotente del repositorio y creación/verificación de la rama `Sprint_1`.
 - Estructura de carpetas `port_log/` (data/raw, data/interim/plots, data/processed, reports).
