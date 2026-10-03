@@ -15,12 +15,12 @@
 - Respuesta: ¿Cuál es la duración promedio de estadía en muelle de los buques infractores? (Valor corregido)
 
 [Ejercicio 05]
-- Generación del gráfico 'Top 10 matrículas más reincidentes' y exportación a `port_log/data/interim/plots/top_infractores.jpg`.
-- Generación del gráfico 'Total de infracciones por turno del día' y exportación a `port_log/data/interim/plots/turnos.jpg`.
-- Generación del gráfico 'Total de infracciones por mes' y exportación a `port_log/data/interim/plots/meses.jpg`.
-- Generación del 'Histograma del exceso de velocidad real' y exportación a `port_log/data/interim/plots/distribucion_exceso.jpg`.
-- Generación del gráfico 'Exceso de velocidad promedio por muelle' y exportación a `port_log/data/interim/plots/exceso_por_muelle.jpg`.
-- Generación del gráfico 'Comparación de infracciones con fecha válida vs fecha inválida' y exportación a `port_log/data/interim/plots/fechas_invalidas.jpg`.
+- Gráfico 'Top 10 matrículas más reincidentes' → `plots/top_infractores.jpg`.
+- Gráfico 'Total de infracciones por turno del día' → `plots/turnos.jpg`.
+- Gráfico 'Total de infracciones por mes' sin la fecha ficticia `1900-01-01` y ordenado de mayor a menor → `plots/meses.jpg`.
+- Histograma del exceso de velocidad real con KDE → `plots/distribucion_exceso.jpg`.
+- Gráfico 'Exceso de velocidad promedio por muelle' → `plots/exceso_por_muelle.jpg`.
+- Gráfico 'Fecha válida vs inválida' → `plots/fechas_invalidas.jpg`.
 
 [Ejercicio 04]
 - Clase `PortAnalyzer` con datos encapsulados y type hints completos.
