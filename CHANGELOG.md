@@ -33,16 +33,13 @@
 - Instanciación de `PortAnalyzer` y uso de sus métodos.
 
 [Ejercicio 03]
-- Normalización de fechas de ingreso y egreso.
-- Normalización de horas de ingreso y egreso.
-- Cálculo de la columna `duracion_horas`.
-- Normalización de matrículas y muelles.
-- Eliminación de filas con valores nulos en columnas críticas.
-- Eliminación de outliers en `tonelaje_declarado` y `velocidad_ingreso`.
-- Creación de las columnas `exceso_velocidad_real` y `exceso_velocidad`.
-- Eliminación de filas sin infracción.
-- Guardado del dataset limpio en `port_log/data/interim/port_movements.csv`.
-- Exportación del resumen estadístico en `port_log/reports/summary_sprint1.csv`.
+- Normalización de fechas (`YYYY-MM-DD`, `dd/mm/YYYY`, `dd-mm-YYYY`); inválidas → `1900-01-01` con flag de validez.
+- Normalización de horas a 24 hs con detalle de inválidas originales; `00:00` se trata como hora válida.
+- `duracion_horas` con `pd.NA` ante fechas/horas inválidas o duraciones negativas.
+- Matrículas y muelles sin separadores (solo alfanumérico, mayúsculas); matrícula inválida → `pd.NA`.
+- Eliminación de nulos solo en columnas críticas justificadas.
+- Outliers por IQR (comparado con Z-score) en `tonelaje_declarado` y `velocidad_ingreso`.
+- Columnas `exceso_velocidad_real` y `exceso_velocidad`; filtro de infracciones; dataset limpio en `data/interim/` y resumen en `reports/summary_sprint1.csv`.
 
 [Ejercicio 02]
 - Descarga del dataset con `curl` a `port_log/data/raw/port_movements.csv` (sin pandas).
