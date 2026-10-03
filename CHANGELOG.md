@@ -1,11 +1,8 @@
 # CHANGELOG
 
 [Ejercicio 07]
-- Redacción y guardado de la conclusión del Sprint 1 en `port_log/reports/conclusion.md`.
-- Evaluación de la calidad del dataset heredado.
-- Identificación de patrones de infracción detectados.
-- Reflexión sobre el impacto de incorporar datos sin limpieza.
-- Propuesta de mejora para el proceso de captura de datos.
+- Conclusión del Sprint 1 en `port_log/reports/conclusion.md` con valores computados del dataset limpio.
+- Evaluación de la calidad del dataset, patrones de infracción, reflexión de impacto y propuesta de mejora de captura.
 
 [Ejercicio 06]
 - Porcentaje de infracciones con fecha inválida (flag de normalización).
