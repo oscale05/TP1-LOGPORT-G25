@@ -8,11 +8,10 @@
 - Propuesta de mejora para el proceso de captura de datos.
 
 [Ejercicio 06]
-- Respuesta: ¿Qué porcentaje de infracciones provienen de registros con fecha inválida?
-- Respuesta: ¿Qué porcentaje de infracciones provienen de registros con hora inválida?
-- Respuesta: ¿Cuál es el tipo de carga más frecuente en infracciones y qué porcentaje representa?
-- Respuesta: ¿Cuál es el origen más frecuente entre los buques infractores?
-- Respuesta: ¿Cuál es la duración promedio de estadía en muelle de los buques infractores? (Valor corregido)
+- Porcentaje de infracciones con fecha inválida (flag de normalización).
+- Porcentaje de infracciones con hora inválida (flags de ingreso y egreso).
+- Tipo de carga y origen más frecuentes entre infractores.
+- Duración promedio de estadía excluyendo valores `pd.NA`.
 
 [Ejercicio 05]
 - Gráfico 'Top 10 matrículas más reincidentes' → `plots/top_infractores.jpg`.
