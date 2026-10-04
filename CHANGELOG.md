@@ -11,12 +11,11 @@
 - Duración promedio de estadía excluyendo valores `pd.NA`.
 
 [Ejercicio 05]
-- Gráfico 'Top 10 matrículas más reincidentes' → `plots/top_infractores.jpg`.
-- Gráfico 'Total de infracciones por turno del día' → `plots/turnos.jpg`.
-- Gráfico 'Total de infracciones por mes' sin la fecha ficticia `1900-01-01` y ordenado de mayor a menor → `plots/meses.jpg`.
-- Histograma del exceso de velocidad real con KDE → `plots/distribucion_exceso.jpg`.
-- Gráfico 'Exceso de velocidad promedio por muelle' → `plots/exceso_por_muelle.jpg`.
-- Gráfico 'Fecha válida vs inválida' → `plots/fechas_invalidas.jpg`.
+- Pipeline completo de preprocesamiento (gris, CLAHE, bilateral, Canny, morfología)
+- Detección de regiones de matrícula via contornos con filtros geométricos
+- OCR con EasyOCR + validación regex (patrones ES, AR, genérico)
+- Consolidado CSV matriculas_sprint2.csv y resumen_sprint2.csv
+- Conclusiones escritas en port_log/reports/conclusion.md
 
 [Ejercicio 04]
 - Clase `PortAnalyzer` con datos encapsulados y type hints completos.

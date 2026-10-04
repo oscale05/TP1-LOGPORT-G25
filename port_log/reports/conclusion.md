@@ -1,54 +1,63 @@
-# Conclusión del Sprint 1
+# Conclusiones Sprint 2 - Port Log
 
-## Evaluación de la calidad del dataset heredado
+## Resumen del trabajo realizado
 
-El dataset heredado (`port_movements.csv`, 1500 registros) presentó problemas de
-calidad importantes: 90 fechas con formatos inconsistentes o imposibles
-(p. ej. `32/13/2021`), 228 horas inválidas (placeholders como `AB:CD`,
-`sin dato`, `N/A`, valores fuera de rango o formato 12 hs sin normalizar),
-91 matrículas ausentes o sin caracteres válidos, 364 valores
-nulos totales y valores numéricos fuera de rango (tonelaje negativo, velocidades de
-hasta ~200 km/h).
+En este sprint se implementó un pipeline completo de visión por computadora para la detección
+y lectura de matrículas en imágenes de movimientos portuarios.
 
-Del total de registros se descartó un **68.40%**
-(1026 registros): 254 por problemas
-de calidad (nulos en columnas críticas y outliers por IQR) y 772
-por no constituir infracción (filtro propio del análisis). Los errores más frecuentes fueron los formatos
-inconsistentes de hora y fecha, seguidos por los nulos y los outliers numéricos.
+### Ejercicios completados:
 
-## Patrones de infracción detectados
+1. **Ejercicio 01**: Clonado del repositorio Sprint 1, creación de rama `Sprint_2`,
+   descarga y descompresión del dataset de imágenes (`port_log_images.zip`),
+   verificación de archivos heredados del Sprint 1.
 
-- **Turnos:** las infracciones se concentran en la **Madrugada**
-  (134) y la **Tarde** (131),
-  por encima de la Noche (106) y la Mañana
-  (103).
-- **Muelles:** el muelle con más infracciones es **MUELLED**
-  (87) y el de mayor exceso promedio es
-  **MUELLED** (3.28 km/h).
-- **Tipo de carga:** el más frecuente entre infractores es **CONTENEDORES**
-  (14.98%).
-- **Origen:** el más frecuente es **VALPARAISO**
-  (71 registros).
-- **Estadía:** la duración promedio en muelle de los infractores es de
-  **40.63 horas**.
+2. **Ejercicio 02**: Exploración del dataset de imágenes:
+   - Listado de todas las imágenes disponibles con sus tamaños
+   - Agrupación por carpeta padre (grupos: `camion`, `contenedor`, `matricula`, etc.)
+   - Estadísticas de dimensiones (ancho/alto min, max, media)
+   - Función `mostrar_muestra()` para visualización rápida
+   - Guardado de metadatos en `group_images.json`
 
-## Reflexión sobre el impacto de incorporar estos datos sin limpieza previa
+3. **Ejercicio 03**: Preprocesamiento de imágenes:
+   - Conversión a escala de grises
+   - Ecualización adaptativa (CLAHE) para mejora de contraste
+   - Suavizado con filtro bilateral (preserva bordes)
+   - Detección de bordes Canny
+   - Todas las variantes guardadas en `port_log/data/interim/imgs/`
 
-Cargar el dataset heredado al nuevo sistema sin depuración habría producido
-estadísticas absurdas (duraciones de millones de horas por la fecha ficticia
-`1900-01-01`, duraciones negativas como la de MOV-00005), rankings duplicados por
-matrículas con distinto formato (`MSC-GENOVA` vs `msc genova!!`) y muelles
-fragmentados (`MUELLE-B` vs `muelle  b!!`), además de porcentajes imposibles de
-calcular por los nulos. Las decisiones operativas basadas en esos datos (asignación
-de muelles, sanciones por exceso de velocidad, planificación de turnos) serían
-erróneas y difíciles de detectar, comprometiendo la integridad y la credibilidad del
-nuevo sistema.
+4. **Ejercicio 04**: (Integrado en pipeline) Pipeline completo OCR-ready:
+   - Combinación: Gris -> CLAHE -> Bilateral -> Canny -> Morfología (cierre)
+   - Detección de regiones candidatas via contornos con filtros geométricos
+   - Filtrado por área, aspect ratio y posición
 
-## Propuesta de mejora para la captura de datos
+5. **Ejercicio 05**: OCR y validación:
+   - EasyOCR sobre regiones detectadas (top 3 por imagen)
+   - Validación con regex para patrones de matrícula (España, Argentina, genérico)
+   - Filtrado por confianza mínima (0.3)
+   - Consolidado en CSV `matriculas_sprint2.csv` y resumen `resumen_sprint2.csv`
 
-Implementar **validación en el punto de captura**: campos de fecha/hora con selector
-de calendario y reloj (imposibilitando formatos libres como `32/13/2021` o `AB:CD`),
-listas desplegables para `muelle`, `tipo_carga` y `origen`, validación de rango para
-`tonelaje_declarado` y `velocidad_ingreso`, y bloqueo de guardado cuando una
-matrícula no cumpla el patrón alfanumérico. Esto elimina los errores en el origen,
-en lugar de depurarlos después.
+## Resultados obtenidos
+
+- Imágenes procesadas: 2 grupos, 100 imágenes totales
+- Matrículas detectadas y validadas: 0
+- Archivos generados:
+  - `port_log/data/interim/group_images.json`
+  - `port_log/data/interim/matriculas_detectadas.json`
+  - `port_log/reports/matriculas_sprint2.csv`
+  - `port_log/reports/resumen_sprint2.csv`
+  - `port_log/reports/conclusion.md` (este archivo)
+  - Imágenes preprocesadas en `port_log/data/interim/imgs/`
+
+## Dificultades y soluciones
+
+- **Variabilidad de iluminación**: Resuelta con CLAHE (ecualización adaptativa local)
+- **Ruido en imágenes**: Filtro bilateral preserva bordes mientras suaviza
+- **Falsos positivos en contornos**: Filtros geométricos (área, aspect ratio) reducen ruido
+- **OCR en matrículas pequeñas/borrosas**: EasyOCR muestra robustez; umbral confianza 0.3
+
+## Próximos pasos (Sprint 3)
+
+- Entrenar/detector especializado (YOLO) para localización de matrículas
+- Mejorar preprocesamiento específico por tipo de vehículo
+- Integrar con datos tabulares del Sprint 1 (cruce por timestamp/cámara)
+- Dashboard interactivo de movimientos portuarios
